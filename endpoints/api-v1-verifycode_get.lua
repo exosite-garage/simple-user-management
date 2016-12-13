@@ -1,4 +1,4 @@
---#ENDPOINT GET /api/v1/user/verify/{code}
+--#ENDPOINT GET /api/v1/verify/{code}
 -- luacheck: globals request response (magic variables from Murano)
 local ret = User.activateUser({code = request.parameters.code})
 if ret == 'OK' then

@@ -5,6 +5,11 @@ Init:
 	- Profile is viewable by other users
 	- Delete self
 
+Pages to build:
+	- Login
+	- Signup
+	- Profile
+
 Two-Roles:
 	- 'user' and 'admin'
 	- First created account is automatically 'admin'

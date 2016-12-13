@@ -12,7 +12,7 @@ else
 	local domain = string.gsub(request.uri, 'https?://(.-/)(.*)', '%1')
 	local text = "Hi " .. request.parameters.email .. ",\n"
 	text = text .. "Click this link to verify your account:\n"
-	text = text .. "https://" .. domain .. "/api/v1/user/verify/" .. ret;
+	text = text .. "https://" .. domain .. "/api/v1/verify/" .. ret;
 	Email.send({
 		from = 'Sample App <mail@exosite.com>',
 		to = request.parameters.email,
