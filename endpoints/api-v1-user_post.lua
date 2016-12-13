@@ -1,8 +1,8 @@
---#ENDPOINT PUT /api/v1/user/{email}
+--#ENDPOINT POST /api/v1/user
 -- luacheck: globals request response (magic variables from Murano)
 local ret = User.createUser({
-	email = request.parameters.email,
-	name = request.parameters.email,
+	email = request.body.email,
+	name = request.body.name or request.body.email,
 	password = request.body.password
 })
 if ret.status_code ~= nil then
