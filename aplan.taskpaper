@@ -1,0 +1,16 @@
+
+Init:
+	- Signup and create user account
+	- Edit profile page
+	- Profile is viewable by other users
+	- Delete self
+
+Two-Roles:
+	- 'user' and 'admin'
+	- First created account is automatically 'admin'
+	- Admin can view all users, give/take admin to other users, delete user
+
+
+
+More to come as I figure this out.
+
