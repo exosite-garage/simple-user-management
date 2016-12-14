@@ -10,8 +10,9 @@ Pages to build:
 	- Login-failed
 	- Signup
 	- Signup-failed
-	- ?Forgot password?
-	- Profile
+	- Forgot password
+	- Change password
+	- Profile; view and edit
 
 p:
 	- ?Add bootstrap to the htmls for pretties?

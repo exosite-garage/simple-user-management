@@ -1,10 +1,10 @@
--- luacheck: ignore currentUserFromHeaders
+-- luacheck: ignore UserUtil
 
 -- determine the current user from the session information
 -- stored in webservice or websocket request headers.
 -- returns user table or nil if no user is contained
 -- in headers
-function currentUserFromHeaders(headers)
+function UserUtil.currentUserFromHeaders(headers)
 	local _
 	local sid = headers['x-token']
 	if headers['x-token'] == nil then
@@ -22,6 +22,11 @@ function currentUserFromHeaders(headers)
 		return user
 	end
 	return nil
+end
+
+UserUtil = {}
+
+function UserUtil.userProfile()
 end
 
 -- vim: set ai sw=4 ts=4 :
