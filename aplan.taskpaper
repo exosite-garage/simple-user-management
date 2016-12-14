@@ -6,9 +6,15 @@ Init:
 	- Delete self
 
 Pages to build:
-	- Login
+	- Login @done(2016-12-13)
+	- Login-failed
 	- Signup
+	- Signup-failed
+	- ?Forgot password?
 	- Profile
+
+p:
+	- ?Add bootstrap to the htmls for pretties?
 
 Two-Roles:
 	- 'user' and 'admin'

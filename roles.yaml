@@ -1,0 +1,11 @@
+---
+- role_id: user
+  parameter:
+  - name: name
+  - name: location
+  - name: tagline
+  - name: weblink
+- role_id: admin
+  parameter:
+  - name: name
+

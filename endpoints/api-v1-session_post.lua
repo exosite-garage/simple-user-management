@@ -11,9 +11,8 @@ if ret.error ~= nil then
 else
 	response.headers = {
 		["Set-Cookie"] = "sid=" .. tostring(ret),
-		["Location"] = "/",
 	}
 	--response.message = {["token"] = ret}
-	response.code = 303
+	response.code = 200
 end
 -- vim: set ai sw=2 ts=2 :
