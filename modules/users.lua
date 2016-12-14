@@ -1,5 +1,7 @@
 -- luacheck: ignore UserUtil
 
+UserUtil = {}
+
 -- determine the current user from the session information
 -- stored in webservice or websocket request headers.
 -- returns user table or nil if no user is contained
@@ -24,7 +26,6 @@ function UserUtil.currentUserFromHeaders(headers)
 	return nil
 end
 
-UserUtil = {}
 
 function UserUtil.userProfile()
 end

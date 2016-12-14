@@ -4,7 +4,6 @@ local ret = User.getUserToken({
 	email = request.body.email,
 	password = request.body.password
 })
-print(to_json(ret))
 if ret.error ~= nil then
 	response.code = 401
 	response.message = "Auth failed"
