@@ -31,6 +31,7 @@ $(function(){
 			},
 			success: function(data) {
 				muranoToken = data.token;
+				Cookies.set('sid', data.token);
 				$('#nav-signedin-message').html('Signed in as <b>' + data.name + '</b> ');
 				$('.nav-signedout').hide();
 				$('.nav-signedin').show();
