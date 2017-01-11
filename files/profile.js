@@ -80,10 +80,13 @@ $(function(){
 				$('img.avatar').attr('src', imgUrl);
 				$('img.avatar').attr('alt', "Avatar for " + data.name);
 
-				$('div.real-name').text(data.name);
-				$('div.location').text(data.location);
-				$('div.bio').text(data.bio);
-
+				$('.profile-details .real-name').text(data.name);
+				$('.profile-details input[name="name"]').val(data.name);
+				$('title').text("Profile for " + data.name);
+				$('.profile-details .location').text(data.location);
+				$('.profile-details input[name="location"]').val(data.location);
+				$('.profile-details .bio').text(data.bio);
+				$('.profile-details input[name="bio"]').val(data.bio);
 
 				$('.profile-details').show();
 			},
@@ -100,10 +103,32 @@ $(function(){
 	}
 	function saveProfile() {
 		// Save button pressed.
-		// Save values (put)
+
 		// Flip back to not edit boxes.
 		$('.profile-details .editonly').hide();
 		$('.profile-details .viewonly').show();
+
+		// Save values (put)
+		console.log('Saving profile…');
+		$.ajax({
+			method: 'PUT',
+			url: '/api/v1/user/' + $('#email').val() + '/profile',
+			data: JSON.stringify({
+				name: $('.profile-details input[name="name"]').val(),
+				location: $('.profile-details input[name="location"]').val(),
+				bio: $('.profile-details input[name="bio"]').val(),
+			}),
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			success: function(data) {
+				console.log("saved.");
+				getProfileDetails();
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
 	}
 
 
