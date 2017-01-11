@@ -15,7 +15,10 @@ Pages to build:
 	- Profile; view and edit
 
 p:
-	- ?Add bootstrap to the htmls for pretties?
+	- Profile data should be stored in the users' data area.
+	- User picture from Gravatar.
+	http://en.gravatar.com/site/implement/
+
 
 Two-Roles:
 	This is based on an incorrect assumetion of how roles work

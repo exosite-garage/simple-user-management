@@ -34,6 +34,8 @@ $(function(){
 				$('#nav-signedin-message').html('Signed in as <b>' + data.name + '</b> ');
 				$('.nav-signedout').hide();
 				$('.nav-signedin').show();
+
+				getProfileDetails();
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				alert(errorThrown);
@@ -67,9 +69,34 @@ $(function(){
 		$('.nav-signedin').hide();
 	}
 
+	function getProfileDetails() {
+		$.ajax({
+			method: 'GET',
+			url: '/api/v1/user/' + $('#email').val() + '/profile',
+			success: function(data) {
+				console.log(data);
+				var gavHash = md5( data.email.trim() );
+				var imgUrl = 'https://www.gravatar.com/avatar/' + gavHash + '?d=mm';
+				$('div.avatar img').attr('src', imgUrl);
+				$('div.avatar img').attr('alt', "Avatar for " + data.name);
+
+				$('div.real-name').text(data.name);
+				$('div.location').text(data.location);
+				$('div.bio').text(data.bio);
+
+
+				$('.profile-details').show();
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+
 
 	// set initial state of signin controls
 	$('.nav-signedin').hide();
+	$('.profile-details').hide();
 
 	$('#sign-in').click(function() {
 		signIn();
