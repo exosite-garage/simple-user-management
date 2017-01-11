@@ -32,7 +32,6 @@ result.email = user.email
 result.creation_date = user.creation_date
 result.location = ud.location or ""
 result.bio = ud.bio or ""
-result.links = ud.links or {}
 
 return result
 
