@@ -76,9 +76,9 @@ $(function(){
 			success: function(data) {
 				console.log(data);
 				var gavHash = md5( data.email.trim() );
-				var imgUrl = 'https://www.gravatar.com/avatar/' + gavHash + '?d=mm';
-				$('div.avatar img').attr('src', imgUrl);
-				$('div.avatar img').attr('alt', "Avatar for " + data.name);
+				var imgUrl = 'https://www.gravatar.com/avatar/' + gavHash + '?d=mm&s=200';
+				$('img.avatar').attr('src', imgUrl);
+				$('img.avatar').attr('alt', "Avatar for " + data.name);
 
 				$('div.real-name').text(data.name);
 				$('div.location').text(data.location);
@@ -92,11 +92,32 @@ $(function(){
 			}
 		});
 	}
+	function editProfile() {
+		// Edit button pressed.
+		// Flip name, location, bio into edit boxes.
+		$('.profile-details .viewonly').hide();
+		$('.profile-details .editonly').show();
+	}
+	function saveProfile() {
+		// Save button pressed.
+		// Save values (put)
+		// Flip back to not edit boxes.
+		$('.profile-details .editonly').hide();
+		$('.profile-details .viewonly').show();
+	}
 
 
 	// set initial state of signin controls
 	$('.nav-signedin').hide();
 	$('.profile-details').hide();
+	$('.profile-details .editonly').hide();
+
+	$('.profile-details a.profile-edit').click(function() {
+		editProfile();
+	});
+	$('.profile-details a.profile-save').click(function() {
+		saveProfile();
+	});
 
 	$('#sign-in').click(function() {
 		signIn();

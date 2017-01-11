@@ -1,8 +1,18 @@
 body {
   padding-top: 5rem;
 }
+img.avatar {
+  float: left;
+}
 .profile-details {
   padding: 3rem 1.5rem;
-  text-align: center;
+  /*text-align: center;*/
+}
+.profile-details div {
+  padding-left: 3em;
+}
+.profile-details input {
+  width: 60%;
 }
 
+/* vim: set et ai sw=2 ts=2 : */
