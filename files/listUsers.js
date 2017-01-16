@@ -67,7 +67,17 @@ $(function(){
 	function deleteUser(userID) {
 		console.log("Gonna delete: " + userID);
 
-		// TODO: need api endpoint.
+		$.ajax({
+			method: 'DELETE',
+			url: '/api/v1/user/' + userID,
+			success: function(data) {
+				// All good
+				getUsers();
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
 	}
 
 	function giveAdmin(userID) {
