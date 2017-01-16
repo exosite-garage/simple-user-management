@@ -8,9 +8,10 @@ if ret.error ~= nil then
 	response.code = 401
 	response.message = "Auth failed"
 else
+  local domain = string.gsub(request.uri, 'https?://(.-)/(.*)', '%1')
 	response.code = 303
 	response.headers = {
-		["Set-Cookie"] = "sid=" .. tostring(ret),
+		["Set-Cookie"] = "sid=" .. tostring(ret) .. "; Domain=" .. domain .. "; Secure",
 		Location = "/profile.html",
 	}
 	local user = User.getCurrentUser({token = ret})
