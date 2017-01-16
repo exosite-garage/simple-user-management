@@ -11,12 +11,15 @@ $(function(){
 		$('#users').html(compiledTemplate({users: users, selfId: thisUser.id}));
 
 		// connect button events
-		/*$('.button-lock').click(function() {
-			lockCommand($(this).data("id"), 'locked');
+		$('.give-admin').click(function() {
+			giveAdmin($(this).data("id"));
 		});
-		$('.button-unlock').click(function() {
-			lockCommand($(this).data("id"), 'unlocked');
-		});*/
+		$('.take-admin').click(function() {
+			takeAdmin($(this).data("id"));
+		});
+		$('.delete-user').click(function() {
+			deleteUser($(this).data("id"));
+		});
 	}
 
 	function signOut() {
@@ -59,6 +62,22 @@ $(function(){
 				alert(errorThrown);
 			}
 		});
+	}
+
+	function deleteUser(userID) {
+		console.log("Gonna delete: " + userID);
+
+		// TODO: need api endpoint.
+	}
+
+	function giveAdmin(userID) {
+		console.log("Want to give " + userID + " admin");
+		// TODO: need api endpoint.
+	}
+
+	function takeAdmin(userID) {
+		console.log("Want to take " + userID + " admin");
+		// TODO: need api endpoint.
 	}
 
 	// set initial state of signin controls

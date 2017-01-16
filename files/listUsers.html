@@ -57,14 +57,18 @@
 		</div>
 		<div class="user col-sm-2">
 			<% if (user.id != selfId) { %>
-				stuff here.
+					<% if ($.inArray('admin', user.roles) != -1) { %>
+						<input data-id="<%- user.id %>" type="checkbox" checked class="take-admin" />
+					<% } else { %>
+						<input data-id="<%- user.id %>" type="checkbox" class="give-admin" />
+					<% } %>
 				<% } else { %>
 				No unadmin Self.
 				<% } %>
 		</div>
 		<div class="user col-sm-2">
 			<% if (user.id != selfId) { %>
-				<input data-id="<%- user.id %>" type="button" value="Delete" />
+				<input data-id="<%- user.id %>" type="button" value="Delete" class="delete-user" />
 				<% } else { %>
 				No Delete Self.
 				<% } %>
