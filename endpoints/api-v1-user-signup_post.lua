@@ -1,4 +1,4 @@
---#ENDPOINT POST /api/v1/user
+--#ENDPOINT POST /api/v1/user-signup
 -- luacheck: globals request response (magic variables from Murano)
 local email = request.body.email
 local name = request.body.name
