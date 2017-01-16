@@ -18,8 +18,19 @@ local ret = User.listUsers()
 if ret.status ~= nil then
 	response.code = ret.status
 	response.message = ret
-else
-	return ret
+	return
 end
 
+-- Add roles to each user.
+for _, luser in ipairs(ret) do
+	local roles = User.listUserRoles{id=luser.id}
+	if roles.status == nil then
+		luser.roles = {'o'}
+		for _,role in ipairs(roles) do
+			luser.roles[#luser.roles + 1] = role.role_id
+		end
+	end
+end
+
+return ret
 -- vim: set ai sw=2 ts=2 :
