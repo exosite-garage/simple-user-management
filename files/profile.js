@@ -57,6 +57,7 @@ $(function(){
 				$('img.avatar').attr('src', imgUrl);
 				$('img.avatar').attr('alt', "Avatar for " + data.name);
 
+				$('#nav-signedin-message').html('Signed in as <b>' + data.name + '</b> ');
 				$('.profile-details .real-name').text(data.name);
 				$('.profile-details input[name="name"]').val(data.name);
 				$('title').text("Profile for " + data.name);
@@ -68,7 +69,6 @@ $(function(){
 				$('.profile-details').show();
 			},
 			error: function(xhr, textStatus, errorThrown) {
-				// TODO: If not logged in, goto 'login.html'
 				alert(errorThrown);
 			}
 		});
@@ -90,7 +90,7 @@ $(function(){
 		console.log('Saving profile…');
 		$.ajax({
 			method: 'PUT',
-			url: '/api/v1/user/' + $('#email').val() + '/profile',
+			url: '/api/v1/user/' + thisUser.email + '/profile',
 			data: JSON.stringify({
 				name: $('.profile-details input[name="name"]').val(),
 				location: $('.profile-details input[name="location"]').val(),
@@ -101,7 +101,7 @@ $(function(){
 			},
 			success: function(data) {
 				console.log("saved.");
-				getProfileDetails();
+				getProfileDetails(thisUser.email);
 			},
 			error: function(xhr, textStatus, errorThrown) {
 				alert(errorThrown);
@@ -125,7 +125,6 @@ $(function(){
 		signOut();
 	});
 
-	//getProfileDetails();
 	checkSession();
 
 });
