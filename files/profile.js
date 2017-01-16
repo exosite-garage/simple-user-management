@@ -113,6 +113,22 @@ $(function(){
 		});
 	}
 
+	function deleteSelf() {
+		if (confirm("Really delete your account?")) {
+			$.ajax({
+				method: 'DELETE',
+				url: '/api/v1/user/' + thisUser.id,
+				success: function(data) {
+					console.log("deleted");
+
+					window.location.href = 'login.html';
+				},
+				error: function(xhr, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+		}
+	}
 
 	// set initial state of signin controls
 	//$('.profile-details').hide();
@@ -123,6 +139,9 @@ $(function(){
 	});
 	$('.profile-details a.profile-save').click(function() {
 		saveProfile();
+	});
+	$('.profile-details a.profile-delete').click(function() {
+		deleteSelf();
 	});
 
 	$('#sign-out').click(function() {
