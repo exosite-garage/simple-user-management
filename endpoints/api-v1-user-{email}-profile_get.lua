@@ -2,7 +2,12 @@
 -- luacheck: globals request response (magic variables from Murano)
 
 -- Any logged in user can get the profile of another.
--- TODO: Login check
+local user = UserUtil.currentUserFromHeaders(request.headers)
+if user == nil or user.id == nil then
+	response.code = 401
+	response.message = "Not logged in"
+	return
+end
 
 -- Get ID of user
 local users = User.listUsers{
@@ -20,7 +25,7 @@ if #users == 0 then
 	return
 end
 
-local user = users[1]
+user = users[1]
 
 -- Get user data for user.
 local ud = User.listUserData{id=user.id}

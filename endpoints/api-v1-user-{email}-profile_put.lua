@@ -3,9 +3,19 @@
 
 -- Can only put if email == current_user email.
 --
--- TODO: ask this:
--- So, if I setup roles&perms will that check happen automatically? or do I have to
--- check it myself?
+local user = UserUtil.currentUserFromHeaders(request.headers)
+if user == nil or user.id == nil then
+	response.code = 401
+	response.message = "Not logged in"
+	return
+end
+
+if request.parameters.email ~= user.email then
+	response.code = 403
+	response.message = "Connot modify other users"
+	return
+end
+
 
 -- Get ID of user
 local users = User.listUsers{
@@ -23,7 +33,7 @@ if #users == 0 then
 	return
 end
 
-local user = users[1]
+user = users[1]
 
 -- Do we need to update their name?
 if request.body.name ~= user.name then
