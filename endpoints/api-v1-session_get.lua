@@ -1,6 +1,6 @@
 --#ENDPOINT get /api/v1/session
 -- luacheck: globals request response (magic variables from Murano)
-local user = currentUserFromHeaders(request.headers)
+local user = UserUtil.currentUserFromHeaders(request.headers)
 if user ~= nil and user.id ~= nil then
     return user
 end

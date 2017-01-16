@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!-- link rel="icon" href="/favicon.ico" -->
 
-    <title>Profile for ___</title>
+    <title>Users</title>
 
     <!-- Bootstrap core CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -31,35 +31,25 @@
         </li>
       </ul>
 			<form class="navbar-form navbar-right" id="nav-login" role="search">
-				<div class="form-group nav-signedin">
+				<div class="form-group nav-signedin" style="display: none;">
 					<span id="nav-signedin-message">Signed in as...</span>
 					<button type="button" class="btn btn-default" id="sign-out">Sign Out</button>
 				</div>
+
+				<div class="form-group nav-signedout">
+					<input type="text" class="form-control" name="email" id="email" placeholder="Email" />
+				</div>
+				<div class="form-group nav-signedout">
+					<input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+				</div>
+				<button type="button" class="btn btn-default nav-signedout" id="sign-in">Sign In</button>
+				<button type="button" class="btn btn-default nav-signedout" id="sign-up">Sign Up</button>
 			</form>
 
     </nav>
 
     <div class="container">
 
-			<div class="profile-details">
-				<img class="avatar" src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm&s=200" alt="Avatar for name" />
-				<form>
-					<div>
-						<span class="real-name viewonly">name</span>
-						<input type="text" class="form-control editonly" name="name" placeholder="Name" />
-					</div>
-					<div>Location:
-						<span class='location viewonly'>&nbsp;</span>
-						<input type="text" class="form-control editonly" name="location" placeholder="Location" />
-					</div>
-					<div>Bio:
-						<span class='bio viewonly'>&nbsp;</span>
-						<input type="text" class="form-control editonly" name="bio" placeholder="Bio" />
-					</div>
-				</form>
-				<a class="profile-edit viewonly" href="#">Edit</a>
-				<a class="profile-save editonly" href="#">Save</a>
-			</div>
 
     </div><!-- /.container -->
 
@@ -71,7 +61,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.2.0/js/tether.min.js" integrity="sha384-Plbmg8JY28KFelvJVai01l8WyZzrYWG825m+cZ0eDDS1f7d/js6ikvy1+X+guPIB" crossorigin="anonymous"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="js/js.cookie.js"></script>
-		<script src="profile.js"></script>
+		<script src="js/common.js"></script>
 		<script src="js/md5.js"></script>
   </body>
 </html>

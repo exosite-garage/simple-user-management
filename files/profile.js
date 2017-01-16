@@ -1,5 +1,6 @@
 $(function(){
-	var muranoToken = null;
+
+	var thisUser = null;
 
 	/* render the locks on the screen */
 	function render(locks) {
@@ -18,62 +19,37 @@ $(function(){
 		});
 	}
 
-	/* sign in by posting to /token to get a token and setting
-	 it in muranoToken */
-	function signIn() {
-		console.log('signing in...');
-		$.ajax({
-			method: 'POST',
-			url: '/api/v1/session',
-			data: JSON.stringify({email: $('#email').val(), password: $('#password').val()}),
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			success: function(data) {
-				muranoToken = data.token;
-				Cookies.set('sid', data.token);
-				$('#nav-signedin-message').html('Signed in as <b>' + data.name + '</b> ');
-				$('.nav-signedout').hide();
-				$('.nav-signedin').show();
-
-				getProfileDetails();
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
-	}
-	function signUp() {
-		console.log('signing up...');
-		$.ajax({
-			method: 'POST',
-			url: '/api/v1/user',
-			data: JSON.stringify({email: $('#email').val(), password: $('#password').val()}),
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			success: function(data) {
-				alert("You should soon receive an email with a validation token.");
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
-	}
-
-	/* sign out by setting muranoToken to null */
 	function signOut() {
-		muranoToken = null;
-		$('#email').val('');
-		$('#password').val('');
-		$('.nav-signedout').show();
-		$('.nav-signedin').hide();
+		Cookies.remove('sid');
+		window.location.href = 'login.html';
 	}
 
-	function getProfileDetails() {
+	function checkSession() {
 		$.ajax({
 			method: 'GET',
-			url: '/api/v1/user/' + $('#email').val() + '/profile',
+			url: '/api/v1/session',
+			success: function(data) {
+				// All good
+				thisUser = data;
+				console.log("Is logged in");
+				$('#nav-signedin-message').html('Signed in as <b>' + data.name + '</b> ');
+
+				getProfileDetails(data.email);
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				// Nope. Goto login.
+
+				console.log("Session check failed.");
+
+				window.location.href = "login.html";
+			}
+		});
+	}
+
+	function getProfileDetails(who) {
+		$.ajax({
+			method: 'GET',
+			url: '/api/v1/user/' + who + '/profile',
 			success: function(data) {
 				console.log(data);
 				var gavHash = md5( data.email.trim() );
@@ -92,6 +68,7 @@ $(function(){
 				$('.profile-details').show();
 			},
 			error: function(xhr, textStatus, errorThrown) {
+				// TODO: If not logged in, goto 'login.html'
 				alert(errorThrown);
 			}
 		});
@@ -134,8 +111,7 @@ $(function(){
 
 
 	// set initial state of signin controls
-	$('.nav-signedin').hide();
-	$('.profile-details').hide();
+	//$('.profile-details').hide();
 	$('.profile-details .editonly').hide();
 
 	$('.profile-details a.profile-edit').click(function() {
@@ -145,15 +121,12 @@ $(function(){
 		saveProfile();
 	});
 
-	$('#sign-in').click(function() {
-		signIn();
-	});
 	$('#sign-out').click(function() {
 		signOut();
 	});
-	$('#sign-up').click(function(){
-		signUp();
-	});
+
+	//getProfileDetails();
+	checkSession();
 
 });
 //	vim: set sw=4 ts=4 :
