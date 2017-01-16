@@ -20,7 +20,8 @@ $(function(){
 	}
 
 	function signOut() {
-		Cookies.remove('sid');
+		// FIXME: This isn't deleteing.
+		Cookies.remove('sid', { Domain: window.location.hostname} );
 		window.location.href = 'login.html';
 	}
 
