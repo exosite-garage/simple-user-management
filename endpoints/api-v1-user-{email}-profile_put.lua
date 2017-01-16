@@ -41,7 +41,7 @@ if request.body.name ~= user.name then
 		id = user.id,
 		name = request.body.name
 	}
-	if ret.status_code ~= nil then
+	if ret.status ~= nil then
 		response.code = ret.status_code
 		response.message = ret
 		return
