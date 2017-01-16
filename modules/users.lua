@@ -21,13 +21,32 @@ function UserUtil.currentUserFromHeaders(headers)
 	local user = User.getCurrentUser{token = sid}
 	if user ~= nil and user.id ~= nil then
 		user.token = sid
+		local roles = User.listUserRoles{id=user.id}
+		if roles.status == nil then
+			user.roles = {}
+			for _,role in ipairs(roles) do
+				user.roles[#user.roles + 1] = role.role_id
+			end
+		end
 		return user
 	end
 	return nil
 end
 
 
-function UserUtil.userProfile()
+-- Check if this user has Admin permissions
+function UserUtil.hasAdmin(userID)
+	local roles = User.listUserRoles{id=userID}
+	if roles.status ~= nil then
+		return false
+	end
+	for _, role in ipairs(roles) do
+		if role.role_id == "admin" then
+			return true
+		end
+	end
+
+	return false
 end
 
 -- Check to see if all the keys exist in the UserData for #id
