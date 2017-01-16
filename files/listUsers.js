@@ -2,9 +2,9 @@ $(function(){
 
 	var thisUser = null;
 
-	/* render the locks on the screen */
+	/* render the users on the screen */
 	function render(users) {
-		//locks = _.sortBy(locks, ['lockID']);
+		users = _.sortBy(users, ['id']);
 
 		var template = $("#user-template").html();
 		var compiledTemplate = _.template(template);
