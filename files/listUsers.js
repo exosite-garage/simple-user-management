@@ -72,12 +72,36 @@ $(function(){
 
 	function giveAdmin(userID) {
 		console.log("Want to give " + userID + " admin");
-		// TODO: need api endpoint.
+		$.ajax({
+			method: 'PUT',
+			url: '/api/v1/user/' + userID,
+			data: JSON.stringify({roles: {add: ['admin']}}),
+			headers: { 'Content-Type': 'application/json' },
+			success: function(data) {
+				// All good
+				getUsers();
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
 	}
 
 	function takeAdmin(userID) {
 		console.log("Want to take " + userID + " admin");
-		// TODO: need api endpoint.
+		$.ajax({
+			method: 'PUT',
+			url: '/api/v1/user/' + userID,
+			data: JSON.stringify({roles: {del: ['admin']}}),
+			headers: { 'Content-Type': 'application/json' },
+			success: function(data) {
+				// All good
+				getUsers();
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
 	}
 
 	// set initial state of signin controls
