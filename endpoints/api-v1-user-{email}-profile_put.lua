@@ -53,18 +53,14 @@ local ud = {}
 ud.location = request.body.location or ""
 ud.bio = request.body.bio or ""
 
+-- Make sure keys exist.
+UserUtil.checkUserDataKeys(user.id, ud)
+
 ud.id = user.id
 print("Writing : " .. table.dump(ud))
 
-local ret = User.createUserData(ud)
-if ret.status ~= nil then
-	print("Create fails")
-	response.code = ret.status
-	response.message = ret
-	return
-end
 
-ret = User.updateUserData(ud)
+local ret = User.updateUserData(ud)
 if ret.status ~= nil then
 	print("Update fails")
 	response.code = ret.status

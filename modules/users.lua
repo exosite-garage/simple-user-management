@@ -30,4 +30,25 @@ end
 function UserUtil.userProfile()
 end
 
--- vim: set ai sw=4 ts=4 :
+-- Check to see if all the keys exist in the UserData for #id
+-- If not, create those keys with the values given
+function UserUtil.checkUserDataKeys(id, keys)
+	local oud = User.listUserData{id=id}
+	local cud = {}
+	for key, def in pairs(keys) do
+		if oud[key] == nil then
+			cud[key] = def
+		end
+	end
+
+	if #cud > 0 then
+		cud.id = id
+		local ret = User.createUserData(cud)
+		if ret.status ~= nil then
+			return false, ret
+		end
+	end
+	return true
+end
+
+-- vim: set ai sw=2 ts=2 :
