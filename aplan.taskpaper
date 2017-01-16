@@ -1,32 +1,29 @@
 
 Init:
-	- Signup and create user account
-	- Edit profile page
 	- Profile is viewable by other users
-	- Delete self
+	- Signup and create user account @done(2017-01-16)
+	- Edit profile page @done(2017-01-16)
+	- Delete self @done(2017-01-16)
 
 Pages to build:
+	- Forgot password
+	- Change password
 	- Login @done(2016-12-13)
 	- Login-failed @done(2016-12-14)
 	- Signup @done(2016-12-14)
 	- Signup-failed @done(2016-12-14)
-	- Forgot password
-	- Change password
-	- Profile; view and edit
+	- Profile; view and edit @done(2017-01-16)
 
-p:
-	- Profile data should be stored in the users' data area.
-	- User picture from Gravatar.
+profile:
+	- Profile data should be stored in the users' data area. @done(2017-01-16)
+	- User picture from Gravatar. @done(2017-01-16)
 	http://en.gravatar.com/site/implement/
 
 
 Two-Roles:
-	This is based on an incorrect assumetion of how roles work
-	- 'user' and 'admin'
 	- First created account is automatically 'admin'
-	- Admin can view all users, give/take admin to other users, delete user
+	- 'user' and 'admin' @done(2017-01-16)
+	actually, it is 'admin' and not 'admin'
+	- Admin can view all users, give/take admin to other users, delete user @done(2017-01-16)
 
-
-
-More to come as I figure this out.
 
