@@ -34,6 +34,9 @@ $(function(){
 				thisUser = data;
 				console.log("Is logged in");
 				$('#nav-signedin-message').html('Signed in as <b>' + data.name + '</b> ');
+				if ($.inArray('admin', data.roles) > -1) {
+					$('.needsAdmin').show();
+				}
 
 				getProfileDetails(data.email);
 			},
