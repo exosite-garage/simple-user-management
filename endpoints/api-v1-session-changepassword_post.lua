@@ -10,14 +10,12 @@ if current == nil or current.id == nil then
 end
 
 if request.body.oldpassword ~= nil and request.body.password ~= nil then
-	print("Updating password for userid " .. request.parameters.id)
-
 	local ret = User.updateUser{
-		id = request.parameters.id,
+		id = current.id,
 		password = request.body.password,
-		original_password = request.body.oldpassword,
+		original_password = request.body.oldpassword
 	}
-	if ret.status ~= nil then
+	if ret.error ~= nil then
 		response.code = ret.status
 		response.message = {
 			message = "Cannot change password",

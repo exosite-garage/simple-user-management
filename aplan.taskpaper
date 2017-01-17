@@ -6,8 +6,8 @@ Init:
 	- Delete self @done(2017-01-16)
 
 Pages to build:
-	- Forgot password
-	- Change password
+	- Change password @done(2017-01-17)
+	- Forgot password @done(2017-01-17)
 	- Login @done(2016-12-13)
 	- Login-failed @done(2016-12-14)
 	- Signup @done(2016-12-14)
