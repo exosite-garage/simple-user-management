@@ -24,6 +24,13 @@ local ret = User.resetUserPassword{
 	id = found.value,
 	password = request.body.password
 }
+if ret.status ~= nil then
+	response.code = ret.status
+	response.message = ret
+	return
+end
+
+Keystore.delete{key = request.body.resetToken}
 
 return ret
 
