@@ -30,6 +30,7 @@ local user = users[1]
 -- resets.
 
 -- You could find better token generaters.
+math.randomseed(os.time()+os.clock())
 local resetToken = Base64.to_base64(math.random() .. os.time() .. math.random())
 
 -- Save the token.
