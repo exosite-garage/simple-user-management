@@ -30,7 +30,7 @@ local user = users[1]
 -- resets.
 
 -- You could find better token generaters.
-local resetToken = Base64.to_base64(math.random() .. os.time() .. math.random)
+local resetToken = Base64.to_base64(math.random() .. os.time() .. math.random())
 
 -- Save this
 local ret = Keystore.set{key = resetToken, value = user.id}
