@@ -84,6 +84,7 @@ if request.body.roles ~= nil and UserUtil.hasAdmin(current.id) then
 				message = "cannot delete role: " .. tostring(delme),
 				details = ret
 			}
+			return
 		end
 	end
 
@@ -106,6 +107,7 @@ if request.body.roles ~= nil and UserUtil.hasAdmin(current.id) then
 					message = "cannot add role: " .. tostring(addme),
 					details = ret
 				}
+				return
 			end
 		end
 	end
