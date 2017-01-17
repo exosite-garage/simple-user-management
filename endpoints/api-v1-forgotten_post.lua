@@ -32,13 +32,14 @@ local user = users[1]
 -- You could find better token generaters.
 local resetToken = Base64.to_base64(math.random() .. os.time() .. math.random())
 
--- Save this
+-- Save the token.
 local ret = Keystore.set{key = resetToken, value = user.id}
 if ret.status ~= nil then
 	response.code = ret.status
 	response.message = ret
 	return
 end
+-- Have the Reset Token expire after 24 hours.
 Keystore.command{key = resetToken, command = 'EXPIRE', args = { 24*3600 }}
 
 local domain = string.gsub(request.uri, 'https?://(.-/)(.*)', '%1')
