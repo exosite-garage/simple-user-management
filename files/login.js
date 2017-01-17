@@ -18,8 +18,26 @@ $(function(){
 		});
 	}
 
+	function forgotPassword() {
+		$.ajax({
+			method: 'POST',
+			url: '/api/v1/forgotten',
+			data: JSON.stringify({email: $('#email').val()}),
+			headers: { 'Content-Type': 'application/json' },
+			success: function(data) {
+				alert("You should soon receive an email with a reset link.");
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+
 	$('#sign-up').click(function(){
 		signUp();
+	});
+	$('#forgot').click(function(){
+		forgotPassword();
 	});
 
 });
