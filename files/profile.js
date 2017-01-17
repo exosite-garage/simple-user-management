@@ -2,26 +2,8 @@ $(function(){
 
 	var thisUser = null;
 
-	/* render the locks on the screen */
-	function render(locks) {
-		locks = _.sortBy(locks, ['lockID']);
-
-		var template = $("#lock-template").html();
-		var compiledTemplate = _.template(template);
-		$('#locks').html(compiledTemplate({locks: locks}));
-
-		// connect button events
-		$('.button-lock').click(function() {
-			lockCommand($(this).data("id"), 'locked');
-		});
-		$('.button-unlock').click(function() {
-			lockCommand($(this).data("id"), 'unlocked');
-		});
-	}
-
 	function signOut() {
-		// FIXME: This isn't deleteing.
-		Cookies.remove('sid', { Domain: window.location.hostname} );
+		Cookies.remove('sid', { domain: window.location.hostname, path: '/'} );
 		window.location.href = 'login.html';
 	}
 

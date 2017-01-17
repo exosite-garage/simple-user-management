@@ -23,8 +23,7 @@ $(function(){
 	}
 
 	function signOut() {
-		// FIXME: This isn't deleteing.
-		Cookies.remove('sid', { Domain: window.location.hostname} );
+		Cookies.remove('sid', { domain: window.location.hostname, path: '/'} );
 		window.location.href = 'login.html';
 	}
 

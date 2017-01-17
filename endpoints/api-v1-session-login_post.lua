@@ -11,7 +11,8 @@ else
   local domain = string.gsub(request.uri, 'https?://(.-)/(.*)', '%1')
 	response.code = 303
 	response.headers = {
-		["Set-Cookie"] = "sid=" .. tostring(ret) .. "; Domain=" .. domain .. "; Secure",
+		["Set-Cookie"] = "sid=" .. tostring(ret) .. "; Domain=" .. domain .. "; Path=/; Secure",
+		["Cache-Control"] = 'no-cache',
 		Location = "/profile.html",
 	}
 	local user = User.getCurrentUser({token = ret})
