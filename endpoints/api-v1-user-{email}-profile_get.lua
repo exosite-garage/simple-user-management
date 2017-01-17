@@ -13,7 +13,7 @@ end
 local users = User.listUsers{
 	filter= {"email::like::" .. request.parameters.email}
 }
-if users.status_code ~= nil then
+if users.status ~= nil then
 	response.code = 404
 	response.message = "Users not found"
 	return
